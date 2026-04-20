@@ -28,15 +28,6 @@ const events: EventItem[] = [
     venue: "Auditorium",
   },
   {
-    icon: CircuitBoard,
-    day: "Day 1",
-    name: "Circuit Mania",
-    description:
-      "Round 1: identify electronic components and explain their function. Top teams advance to Round 2 — design and build a working circuit from scratch.",
-    meta: "₹99 · 1–2 per team",
-    venue: "Auditorium",
-  },
-  {
     icon: Swords,
     day: "Day 1",
     name: "Robo Wrestling",
@@ -46,13 +37,13 @@ const events: EventItem[] = [
     venue: "B-Block, Ground floor",
   },
   {
-    icon: Plane,
-    day: "Day 2",
-    name: "Drone Competition",
+    icon: CircuitBoard,
+    day: "Day 1",
+    name: "Circuit Mania",
     description:
-      "Manually pilot a drone through a predefined obstacle course and land on the target zone in the minimum time. Penalties for collisions and missed obstacles.",
-    meta: "₹149 · 1–2 per team",
-    venue: "Ground",
+      "Round 1: identify electronic components and explain their function. Top teams advance to Round 2 — design and build a working circuit from scratch.",
+    meta: "₹99 · 1–2 per team",
+    venue: "Auditorium",
   },
   {
     icon: Car,
@@ -62,6 +53,15 @@ const events: EventItem[] = [
       "A multiplayer, time-based race where multiple bots compete on a common track. Strategic blocking allowed — destruction is not. Tests control, strategy, and grit.",
     meta: "₹99 · 1–3 per team",
     venue: "C-Block, Ground floor",
+  },
+  {
+    icon: Plane,
+    day: "Day 2",
+    name: "Drone Competition",
+    description:
+      "Manually pilot a drone through a predefined obstacle course and land on the target zone in the minimum time. Penalties for collisions and missed obstacles.",
+    meta: "₹149 · 1–2 per team",
+    venue: "Ground",
   },
   {
     icon: PackageSearch,

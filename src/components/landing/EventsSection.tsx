@@ -29,7 +29,7 @@ const events: EventItem[] = [
   },
   {
     icon: Plane,
-    day: "Day 1",
+    day: "Day 2",
     name: "Drone Competition",
     description:
       "Manually pilot a drone through a predefined obstacle course and land on the target zone in the minimum time. Penalties for collisions and missed obstacles.",
@@ -56,7 +56,7 @@ const events: EventItem[] = [
   },
   {
     icon: Swords,
-    day: "Day 2",
+    day: "Day 1",
     name: "Robo Wrestling",
     description:
       "Head-to-head knockouts in a defined arena. Disable, immobilise, or push your opponent out of the combat zone using design, drive, and tactics.",

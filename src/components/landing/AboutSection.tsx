@@ -16,7 +16,7 @@ export function AboutSection() {
               About us
             </span>
             <h2 className="mt-3 font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              Where mechanical, electronics & code collide.
+              Where Code, Electronics and Mechanics collide and make the system intelligent.
             </h2>
             <div className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground">
               <p>

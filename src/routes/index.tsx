@@ -24,25 +24,6 @@ const Footer = lazy(() =>
 );
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      {
-        title: "Apratim Adirtham 2026 — Robotics & Drone Fest | May 14–15",
-      },
-      {
-        name: "description",
-        content:
-          "Apratim Adirtham is a 2-day inter-college robotics & drone fest by the R&D Club. Compete in Robo Race, Drone Race, Robo Wrestling, Circuit Mania and more on May 14–15, 2026.",
-      },
-      { property: "og:title", content: "Apratim Adirtham 2026 — Robotics & Drone Fest" },
-      {
-        property: "og:description",
-        content:
-          "2-day inter-college robotics & drone fest. 6 events, ₹40K+ prize pool. May 14–15, 2026.",
-      },
-      { property: "og:type", content: "website" },
-    ],
-  }),
   component: LandingPage,
 });
 

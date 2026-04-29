@@ -1,9 +1,4 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
-
-import appCss from "../styles.css?url";
-import { ThemeProvider } from "@/components/ThemeProvider";
-
-const themeInitScript = `(function(){try{var t=localStorage.getItem('apratim-theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d){document.documentElement.classList.add('dark');}}catch(e){}})();`;
+import { Outlet, Link, createRootRoute } from "@tanstack/react-router";
 
 function NotFoundComponent() {
   return (
@@ -28,52 +23,6 @@ function NotFoundComponent() {
 }
 
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { title: "Aadiratham" },
-      { property: "og:title", content: "Aadiratham" },
-      { name: "twitter:title", content: "Aadiratham" },
-      { name: "description", content: "Aadriratham is Inter-College Robotics Festival and Techfest organised every year by Robotics and Drone club at Indore Institute of Science and Technology" },
-      { property: "og:description", content: "Aadriratham is Inter-College Robotics Festival and Techfest organised every year by Robotics and Drone club at Indore Institute of Science and Technology" },
-      { name: "twitter:description", content: "Aadriratham is Inter-College Robotics Festival and Techfest organised every year by Robotics and Drone club at Indore Institute of Science and Technology" },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/41c7b95c-d310-4f55-b08a-ddd4ddbab084/id-preview-af096b97--0c0fc86f-4f7e-4d9d-a729-be3e2a0d3509.lovable.app-1776511525828.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/41c7b95c-d310-4f55-b08a-ddd4ddbab084/id-preview-af096b97--0c0fc86f-4f7e-4d9d-a729-be3e2a0d3509.lovable.app-1776511525828.png" },
-      { property: "og:type", content: "website" },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-    ],
-  }),
-  shellComponent: RootShell,
-  component: RootComponent,
+  component: () => <Outlet />,
   notFoundComponent: NotFoundComponent,
 });
-
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-
-function RootComponent() {
-  return (
-    <ThemeProvider>
-      <Outlet />
-    </ThemeProvider>
-  );
-}

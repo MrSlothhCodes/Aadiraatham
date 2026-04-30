@@ -123,10 +123,6 @@ export function ContactSection() {
             <h3 className="mt-5 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               Ready to compete?
             </h3>
-            <p className="mx-auto mt-3 max-w-xl text-base text-muted-foreground">
-              Registrations close soon. Lock your team in before the spots fill
-              up.
-            </p>
             <Button
               asChild
               variant="outline"

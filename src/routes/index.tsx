@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
 import { Navbar } from "@/components/landing/Navbar";
 import { Hero } from "@/components/landing/Hero";
+import { SpaceBackdrop } from "@/components/landing/SpaceBackdrop";
 
 // Defer below-the-fold sections to reduce initial JS bundle size.
 const EventsSection = lazy(() =>
@@ -29,7 +30,8 @@ export const Route = createFileRoute("/")({
 
 function LandingPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="relative min-h-screen text-foreground">
+      <SpaceBackdrop />
       <Navbar />
       <main>
         <Hero />

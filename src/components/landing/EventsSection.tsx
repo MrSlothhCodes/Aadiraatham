@@ -94,7 +94,7 @@ export function EventsSection() {
   const ActiveIcon = active?.icon;
 
   return (
-    <section id="events" className="border-b border-border/60 py-24 sm:py-32">
+    <section id="events" className="relative border-b border-border/60 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
@@ -118,10 +118,16 @@ export function EventsSection() {
                 type="button"
                 onClick={() => setActive(e)}
                 key={e.name}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 text-left transition-all duration-500 hover:-translate-y-2 hover:border-primary/60 hover:shadow-elegant focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-primary/20 bg-card/40 p-6 text-left backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-primary/70 hover:bg-card/60 hover:shadow-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
+                {/* Corner brackets — mission control panel */}
+                <span className="pointer-events-none absolute left-2 top-2 size-3 border-l border-t border-primary/60" />
+                <span className="pointer-events-none absolute right-2 top-2 size-3 border-r border-t border-primary/60" />
+                <span className="pointer-events-none absolute bottom-2 left-2 size-3 border-b border-l border-primary/60" />
+                <span className="pointer-events-none absolute bottom-2 right-2 size-3 border-b border-r border-primary/60" />
+
                 {/* Animated gradient border glow */}
-                <div className="pointer-events-none absolute -inset-px -z-10 rounded-2xl bg-gradient-to-br from-primary/0 via-primary/0 to-primary-glow/0 opacity-0 blur-xl transition-opacity duration-500 group-hover:from-primary/30 group-hover:to-primary-glow/30 group-hover:opacity-100" />
+                <div className="pointer-events-none absolute -inset-px -z-10 rounded-2xl bg-gradient-to-br from-primary/0 via-primary/0 to-primary-glow/0 opacity-0 blur-2xl transition-opacity duration-500 group-hover:from-primary/40 group-hover:to-primary-glow/40 group-hover:opacity-100" />
 
                 {/* Top accent bar */}
                 <div className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-primary via-primary-glow to-primary transition-transform duration-500 group-hover:scale-x-100" />
@@ -138,16 +144,16 @@ export function EventsSection() {
                 />
 
                 {/* Big faded number */}
-                <span className="pointer-events-none absolute -right-2 -top-4 select-none font-display text-[7rem] font-black leading-none text-primary/5 transition-colors duration-500 group-hover:text-primary/10">
+                <span className="pointer-events-none absolute -right-2 -top-4 select-none font-mono text-[7rem] font-black leading-none text-primary/10 transition-colors duration-500 group-hover:text-primary/20">
                   {num}
                 </span>
 
                 <div className="relative flex items-center justify-between">
-                  <span className="relative grid size-14 place-items-center rounded-2xl bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-[0_0_30px_-5px_hsl(var(--primary))]">
+                  <span className="relative grid size-14 place-items-center rounded-2xl border border-primary/30 bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-[0_0_30px_-2px_var(--primary)]">
                     <Icon className="size-7" />
                   </span>
-                  <span className="rounded-full border border-primary/30 bg-primary/5 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary">
-                    {e.day}
+                  <span className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+                    ◉ {e.day}
                   </span>
                 </div>
 
@@ -158,10 +164,10 @@ export function EventsSection() {
                   {e.description}
                 </p>
 
-                <div className="relative mt-6 flex items-center justify-between border-t border-dashed border-border/60 pt-4 text-xs">
-                  <span className="font-semibold text-primary">{e.meta}</span>
+                <div className="relative mt-6 flex items-center justify-between border-t border-dashed border-primary/30 pt-4 text-xs">
+                  <span className="font-mono font-semibold text-primary">{e.meta}</span>
                   <span className="inline-flex items-center gap-1 text-muted-foreground">
-                    View details
+                    <span className="font-mono uppercase tracking-wider">Launch</span>
                     <ArrowRight className="size-3 transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>

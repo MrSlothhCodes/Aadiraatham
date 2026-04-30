@@ -8,7 +8,7 @@ const stats = [
 
 export function AboutSection() {
   return (
-    <section id="about" className="border-b border-border/60 bg-secondary/40 py-24 sm:py-32">
+    <section id="about" className="relative border-b border-border/60 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
           <div>
@@ -44,7 +44,7 @@ export function AboutSection() {
               return (
                 <div
                   key={s.label}
-                  className="flex items-center gap-6 rounded-2xl border border-border bg-card p-6 transition-shadow hover:shadow-elegant"
+                  className="flex items-center gap-6 rounded-2xl border border-primary/20 bg-card/40 p-6 backdrop-blur-xl transition-all hover:border-primary/50 hover:shadow-glow"
                 >
                   <span className="grid size-14 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
                     <Icon className="size-7" />

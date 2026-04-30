@@ -27,8 +27,8 @@ export function Navbar() {
     <header
       className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ease-out ${
         scrolled
-          ? "border-border/60 bg-background/85 backdrop-blur-md supports-[backdrop-filter]:bg-background/70"
-          : "border-transparent bg-background"
+          ? "border-border/60 bg-background/60 backdrop-blur-xl"
+          : "border-transparent bg-background/20 backdrop-blur-md"
       }`}
     >
       <div

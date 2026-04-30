@@ -92,33 +92,43 @@ export function EventsSection() {
         </div>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {events.map((e) => {
+          {events.map((e, i) => {
             const Icon = e.icon;
+            const num = String(i + 1).padStart(2, "0");
             return (
               <article
                 key={e.name}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-elegant"
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-500 hover:-translate-y-2 hover:border-primary/60 hover:shadow-elegant"
               >
-                <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-primary to-primary-glow transition-transform duration-300 group-hover:scale-x-100" />
+                {/* Animated gradient border glow */}
+                <div className="pointer-events-none absolute -inset-px -z-10 rounded-2xl bg-gradient-to-br from-primary/0 via-primary/0 to-primary-glow/0 opacity-0 blur-xl transition-opacity duration-500 group-hover:from-primary/30 group-hover:to-primary-glow/30 group-hover:opacity-100" />
 
-                <div className="flex items-center justify-between">
-                  <span className="grid size-12 place-items-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                    <Icon className="size-6" />
+                {/* Top accent bar */}
+                <div className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-primary via-primary-glow to-primary transition-transform duration-500 group-hover:scale-x-100" />
+
+                {/* Big faded number */}
+                <span className="pointer-events-none absolute -right-2 -top-4 select-none font-display text-[7rem] font-black leading-none text-primary/5 transition-colors duration-500 group-hover:text-primary/10">
+                  {num}
+                </span>
+
+                <div className="relative flex items-center justify-between">
+                  <span className="relative grid size-14 place-items-center rounded-2xl bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-[0_0_30px_-5px_hsl(var(--primary))]">
+                    <Icon className="size-7" />
                   </span>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  <span className="rounded-full border border-primary/30 bg-primary/5 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary">
                     {e.day}
                   </span>
                 </div>
 
-                <h3 className="mt-5 font-display text-xl font-bold text-card-foreground">
+                <h3 className="relative mt-6 font-display text-xl font-bold text-card-foreground transition-colors group-hover:text-primary">
                   {e.name}
                 </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                <p className="relative mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
                   {e.description}
                 </p>
 
-                <div className="mt-6 flex items-center justify-between border-t border-border/60 pt-4 text-xs">
-                  <span className="font-medium text-primary">{e.meta}</span>
+                <div className="relative mt-6 flex items-center justify-between border-t border-dashed border-border/60 pt-4 text-xs">
+                  <span className="font-semibold text-primary">{e.meta}</span>
                   <span className="text-muted-foreground">{e.venue}</span>
                 </div>
               </article>

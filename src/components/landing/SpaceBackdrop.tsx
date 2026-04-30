@@ -1,5 +1,108 @@
 import * as React from "react";
 
+function Shuttle() {
+  return (
+    <svg
+      width="120"
+      height="60"
+      viewBox="0 0 120 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="drop-shadow-[0_0_20px_rgba(180,210,255,0.5)] sm:scale-110"
+    >
+      {/* Engine flames */}
+      <path
+        d="M0 30 Q 10 22, 22 28 Q 10 30, 22 32 Q 10 38, 0 30 Z"
+        fill="url(#flame)"
+      >
+        <animate
+          attributeName="opacity"
+          values="0.7;1;0.7"
+          dur="0.4s"
+          repeatCount="indefinite"
+        />
+      </path>
+      {/* Body */}
+      <path
+        d="M20 24 L80 22 Q 105 30, 80 38 L20 36 Q 14 30, 20 24 Z"
+        fill="#e6ecf5"
+        stroke="#94a3b8"
+        strokeWidth="0.8"
+      />
+      {/* Cockpit window */}
+      <circle cx="92" cy="30" r="4" fill="#7dd3fc" stroke="#0ea5e9" strokeWidth="0.8" />
+      {/* Wing */}
+      <path d="M40 36 L55 50 L72 38 Z" fill="#cbd5e1" stroke="#64748b" strokeWidth="0.6" />
+      <path d="M40 24 L55 12 L72 22 Z" fill="#cbd5e1" stroke="#64748b" strokeWidth="0.6" />
+      {/* Stripe */}
+      <rect x="30" y="29" width="50" height="2" fill="#ef4444" rx="1" />
+      <defs>
+        <linearGradient id="flame" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#fff7ed" />
+          <stop offset="40%" stopColor="#fb923c" />
+          <stop offset="100%" stopColor="#7c2d12" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
+
+function Astronaut() {
+  return (
+    <svg
+      width="80"
+      height="100"
+      viewBox="0 0 80 100"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="drop-shadow-[0_0_15px_rgba(160,200,255,0.45)]"
+    >
+      {/* Tether */}
+      <path
+        d="M40 5 Q 30 18, 40 30"
+        stroke="#94a3b8"
+        strokeWidth="0.8"
+        strokeDasharray="2 2"
+        fill="none"
+      />
+      {/* Backpack */}
+      <rect x="22" y="40" width="36" height="28" rx="6" fill="#94a3b8" />
+      {/* Body suit */}
+      <ellipse cx="40" cy="55" rx="20" ry="22" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="1" />
+      {/* Arms */}
+      <rect x="10" y="48" width="14" height="9" rx="4" fill="#f8fafc" stroke="#cbd5e1" />
+      <rect x="56" y="48" width="14" height="9" rx="4" fill="#f8fafc" stroke="#cbd5e1" />
+      {/* Gloves */}
+      <circle cx="10" cy="52" r="5" fill="#e2e8f0" stroke="#94a3b8" />
+      <circle cx="70" cy="52" r="5" fill="#e2e8f0" stroke="#94a3b8" />
+      {/* Legs */}
+      <rect x="28" y="72" width="10" height="20" rx="4" fill="#f8fafc" stroke="#cbd5e1" />
+      <rect x="42" y="72" width="10" height="20" rx="4" fill="#f8fafc" stroke="#cbd5e1" />
+      {/* Boots */}
+      <ellipse cx="33" cy="94" rx="6" ry="3" fill="#475569" />
+      <ellipse cx="47" cy="94" rx="6" ry="3" fill="#475569" />
+      {/* Helmet */}
+      <circle cx="40" cy="32" r="16" fill="#e2e8f0" stroke="#94a3b8" strokeWidth="1" />
+      {/* Visor */}
+      <ellipse cx="40" cy="32" rx="11" ry="10" fill="url(#visor)" stroke="#0f172a" strokeWidth="0.8" />
+      {/* Visor reflection */}
+      <ellipse cx="36" cy="28" rx="3" ry="2" fill="white" opacity="0.7" />
+      {/* Chest panel */}
+      <rect x="34" y="50" width="12" height="8" rx="1.5" fill="#1e293b" />
+      <circle cx="37" cy="54" r="1" fill="#22d3ee" />
+      <circle cx="40" cy="54" r="1" fill="#facc15" />
+      <circle cx="43" cy="54" r="1" fill="#ef4444" />
+      <defs>
+        <linearGradient id="visor" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#0ea5e9" />
+          <stop offset="60%" stopColor="#1e3a8a" />
+          <stop offset="100%" stopColor="#020617" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
+
 /**
  * Fixed full-viewport space scene that transitions with scroll.
  * Altitude descends from deep space (top) → upper atmosphere → ground (bottom).

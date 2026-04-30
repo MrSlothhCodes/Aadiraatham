@@ -101,25 +101,43 @@ export function ContactSection() {
           </a>
         </div>
 
-        <div className="mt-16 overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary to-primary-glow p-10 text-center text-primary-foreground shadow-elegant sm:p-16">
-          <h3 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
-            Ready to compete?
-          </h3>
-          <p className="mx-auto mt-3 max-w-xl text-base opacity-90">
-            Registrations close soon. Lock your team in before the spots fill
-            up.
-          </p>
-          <Button
-            asChild
-            size="lg"
-            variant="secondary"
-            className="group mt-8 h-12 bg-background px-8 text-base text-foreground hover:bg-background/90"
-          >
-            <a href={APPLY_URL} target="_blank" rel="noopener noreferrer">
-              Apply Now
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-            </a>
-          </Button>
+        <div className="relative mt-16 overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-[oklch(0.16_0.07_270)] via-[oklch(0.12_0.05_265)] to-[oklch(0.18_0.09_290)] p-10 text-center shadow-[0_0_60px_-15px_var(--primary)] backdrop-blur-xl sm:p-16">
+          {/* Decorative star/glow accents */}
+          <div className="pointer-events-none absolute -left-20 -top-20 size-64 rounded-full bg-primary/20 blur-3xl" />
+          <div className="pointer-events-none absolute -right-20 -bottom-20 size-64 rounded-full bg-primary-glow/20 blur-3xl" />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.08]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 20% 30%, white 0.5px, transparent 1px), radial-gradient(circle at 70% 60%, white 0.5px, transparent 1px), radial-gradient(circle at 40% 80%, white 0.5px, transparent 1px)",
+              backgroundSize: "60px 60px, 90px 90px, 120px 120px",
+            }}
+          />
+
+          <div className="relative">
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+              <span className="size-1.5 animate-pulse rounded-full bg-primary" />
+              Mission Briefing
+            </span>
+            <h3 className="mt-5 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Ready to compete?
+            </h3>
+            <p className="mx-auto mt-3 max-w-xl text-base text-muted-foreground">
+              Registrations close soon. Lock your team in before the spots fill
+              up.
+            </p>
+            <Button
+              asChild
+              size="lg"
+              className="group relative mt-8 h-12 overflow-hidden bg-primary px-8 text-base font-semibold text-primary-foreground shadow-[0_0_30px_-4px_var(--primary)] transition-all hover:bg-primary/90 hover:shadow-[0_0_50px_-2px_var(--primary)]"
+            >
+              <a href={APPLY_URL} target="_blank" rel="noopener noreferrer">
+                Apply Now
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
     </section>

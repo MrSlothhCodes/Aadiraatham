@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { APPLY_URL } from "@/lib/event-config";
+import astronautImg from "@/assets/astronaut.png";
 
 interface EventItem {
   icon: LucideIcon;
@@ -94,8 +95,14 @@ export function EventsSection() {
   const ActiveIcon = active?.icon;
 
   return (
-    <section id="events" className="relative border-b border-border/60 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section
+      id="events"
+      className="relative overflow-hidden border-b border-border/60 py-24 sm:py-32"
+    >
+      {/* Floating astronaut — drifts across as the events area scrolls past */}
+      <FloatingAstronaut />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
             The competitions
@@ -230,5 +237,64 @@ export function EventsSection() {
         </DialogContent>
       </Dialog>
     </section>
+  );
+}
+
+function FloatingAstronaut() {
+  const ref = React.useRef<HTMLDivElement | null>(null);
+  const [p, setP] = React.useState(0);
+
+  React.useEffect(() => {
+    const onScroll = () => {
+      const el = ref.current?.parentElement;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // 0 when section just enters bottom of viewport, 1 when it has fully exited the top
+      const total = rect.height + vh;
+      const passed = vh - rect.top;
+      setP(Math.max(0, Math.min(1, passed / total)));
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      aria-hidden
+      className="pointer-events-none absolute inset-0 -z-0 overflow-hidden"
+    >
+      <div
+        className="absolute"
+        style={{
+          // Drift diagonally across the section as user scrolls past it
+          left: `${-15 + p * 115}%`,
+          top: `${5 + p * 85}%`,
+          transform: `rotate(${-15 + p * 35}deg)`,
+          transition: "transform 120ms linear",
+        }}
+      >
+        <div style={{ animation: "float-slow 6s ease-in-out infinite" }}>
+          <img
+            src={astronautImg}
+            alt=""
+            width={320}
+            height={320}
+            loading="lazy"
+            className="w-[150px] sm:w-[220px] lg:w-[280px] h-auto select-none"
+            style={{
+              filter:
+                "drop-shadow(0 0 25px rgba(120,180,255,0.45)) drop-shadow(0 0 60px rgba(80,130,220,0.35))",
+            }}
+          />
+        </div>
+      </div>
+    </div>
   );
 }

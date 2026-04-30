@@ -1,5 +1,4 @@
 import * as React from "react";
-import astronautImg from "@/assets/astronaut.png";
 import shuttleImg from "@/assets/shuttle.png";
 import moonImg from "@/assets/moon.png";
 
@@ -169,7 +168,7 @@ export function SpaceBackdrop() {
             className="absolute inset-0 -z-10 rounded-full blur-3xl"
             style={{
               background:
-                "radial-gradient(circle, rgba(200,220,255,0.55) 0%, rgba(160,200,255,0.25) 40%, transparent 75%)",
+                "radial-gradient(circle, rgba(255,228,150,0.6) 0%, rgba(240,200,120,0.3) 40%, transparent 75%)",
               transform: "scale(1.6)",
               animation: "moon-pulse 6s ease-in-out infinite",
             }}
@@ -183,7 +182,7 @@ export function SpaceBackdrop() {
             className="size-56 object-contain sm:size-80 lg:size-96"
             style={{
               filter:
-                "drop-shadow(0 0 30px rgba(200,220,255,0.6)) drop-shadow(0 0 80px rgba(140,180,255,0.4))",
+                "sepia(0.55) saturate(1.5) hue-rotate(-12deg) brightness(1.05) drop-shadow(0 0 30px rgba(255,220,140,0.65)) drop-shadow(0 0 80px rgba(240,190,100,0.45))",
             }}
           />
         </div>
@@ -231,30 +230,6 @@ export function SpaceBackdrop() {
           />
         </div>
 
-        {/* Astronaut — floats down on the left, gentle rotation */}
-        <div
-          className="absolute"
-          style={{
-            left: `${6 + Math.sin(progress * Math.PI * 2) * 7}%`,
-            top: `${8 + progress * 75}%`,
-            transform: `rotate(${progress * 360 * 0.5}deg)`,
-            opacity: Math.max(0.2, 1 - progress * 0.5),
-            animation: "float-slow 7s ease-in-out infinite",
-          }}
-        >
-          <img
-            src={astronautImg}
-            alt=""
-            width={260}
-            height={260}
-            loading="lazy"
-            className="w-[140px] sm:w-[200px] lg:w-[260px] h-auto"
-            style={{
-              filter:
-                "drop-shadow(0 0 18px rgba(140,190,255,0.5)) drop-shadow(0 0 40px rgba(80,130,220,0.3))",
-            }}
-          />
-        </div>
       </div>
 
       {/* Altitude HUD — visible on mobile too (compact) */}

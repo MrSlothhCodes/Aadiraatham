@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { APPLY_URL } from "@/lib/event-config";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo.png";
 
 const links = [
   { href: "#events", label: "Events" },

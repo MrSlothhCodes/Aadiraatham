@@ -23,6 +23,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { APPLY_URL } from "@/lib/event-config";
 import astronautImg from "@/assets/astronaut.png";
+import shuttleImg from "@/assets/shuttle.png";
 
 interface EventItem {
   icon: LucideIcon;
@@ -101,6 +102,7 @@ export function EventsSection() {
     >
       {/* Floating astronaut — drifts across as the events area scrolls past */}
       <FloatingAstronaut />
+      <FloatingShuttle />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
@@ -291,6 +293,64 @@ function FloatingAstronaut() {
             style={{
               filter:
                 "drop-shadow(0 0 25px rgba(120,180,255,0.45)) drop-shadow(0 0 60px rgba(80,130,220,0.35))",
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FloatingShuttle() {
+  const ref = React.useRef<HTMLDivElement | null>(null);
+  const [p, setP] = React.useState(0);
+
+  React.useEffect(() => {
+    const onScroll = () => {
+      const el = ref.current?.parentElement;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const total = rect.height + vh;
+      const passed = vh - rect.top;
+      setP(Math.max(0, Math.min(1, passed / total)));
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      aria-hidden
+      className="pointer-events-none absolute inset-0 -z-0 overflow-hidden"
+    >
+      <div
+        className="absolute"
+        style={{
+          // Drift opposite direction — right to left across the section
+          right: `${-15 + p * 110}%`,
+          top: `${30 + p * 40}%`,
+          transform: `rotate(${15 - p * 30}deg)`,
+          transition: "transform 120ms linear",
+        }}
+      >
+        <div style={{ animation: "float-slow 7s ease-in-out infinite" }}>
+          <img
+            src={shuttleImg}
+            alt=""
+            width={420}
+            height={210}
+            loading="lazy"
+            className="w-[180px] sm:w-[280px] lg:w-[360px] h-auto select-none"
+            style={{
+              filter:
+                "drop-shadow(0 0 20px rgba(120,170,255,0.45)) drop-shadow(0 0 50px rgba(80,130,220,0.3))",
             }}
           />
         </div>

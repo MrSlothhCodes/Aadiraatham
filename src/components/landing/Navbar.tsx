@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { APPLY_URL } from "@/lib/event-config";
 import logoClub from "@/assets/logo-club.png";
 
@@ -73,7 +72,6 @@ export function Navbar() {
 
         {/* Right: Controls */}
         <div className="flex items-center gap-2">
-          <ThemeToggle />
           <Button
             asChild
             size="sm"

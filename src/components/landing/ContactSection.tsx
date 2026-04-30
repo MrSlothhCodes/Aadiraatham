@@ -129,8 +129,9 @@ export function ContactSection() {
             </p>
             <Button
               asChild
+              variant="outline"
               size="lg"
-              className="group relative mt-8 h-12 overflow-hidden bg-primary px-8 text-base font-semibold text-primary-foreground shadow-[0_0_30px_-4px_var(--primary)] transition-all hover:bg-primary/90 hover:shadow-[0_0_50px_-2px_var(--primary)]"
+              className="group mt-8 h-12 border-primary/40 bg-background/50 px-8 text-base backdrop-blur transition-all hover:border-primary hover:bg-primary/10 hover:text-primary"
             >
               <a href={APPLY_URL} target="_blank" rel="noopener noreferrer">
                 Apply Now

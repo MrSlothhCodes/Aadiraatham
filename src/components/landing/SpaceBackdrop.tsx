@@ -1,5 +1,4 @@
 import * as React from "react";
-import shuttleImg from "@/assets/shuttle.png";
 import moonImg from "@/assets/moon.png";
 
 /**
@@ -97,23 +96,23 @@ export function SpaceBackdrop() {
           }}
         />
 
-        {/* Atmosphere */}
+        {/* Atmosphere — stays in deep purple/indigo tones (no green) */}
         <div
           className="absolute inset-0 transition-opacity duration-300"
           style={{
             opacity: atmosphereOpacity,
             background:
-              "linear-gradient(to bottom, oklch(0.14 0.07 270) 0%, oklch(0.26 0.12 250) 40%, oklch(0.4 0.14 230) 80%, oklch(0.48 0.12 210) 100%)",
+              "linear-gradient(to bottom, oklch(0.12 0.06 270) 0%, oklch(0.18 0.09 270) 50%, oklch(0.22 0.11 265) 100%)",
           }}
         />
 
-        {/* Ground / horizon */}
+        {/* Lower atmosphere — subtle deep-blue glow, no green */}
         <div
           className="absolute inset-0 transition-opacity duration-300"
           style={{
             opacity: groundOpacity,
             background:
-              "linear-gradient(to bottom, oklch(0.45 0.14 220) 0%, oklch(0.55 0.16 200) 35%, oklch(0.4 0.1 60) 70%, oklch(0.22 0.06 40) 100%)",
+              "linear-gradient(to bottom, oklch(0.18 0.09 270) 0%, oklch(0.14 0.07 265) 50%, oklch(0.08 0.05 265) 100%)",
           }}
         />
 
@@ -187,49 +186,8 @@ export function SpaceBackdrop() {
           />
         </div>
 
-        {/* Curved earth horizon */}
-        <div
-          className="absolute -bottom-[60vh] left-1/2 size-[200vw] -translate-x-1/2 rounded-full transition-opacity duration-500"
-          style={{
-            opacity: groundOpacity,
-            background:
-              "radial-gradient(circle at 50% 0%, oklch(0.55 0.16 200) 0%, oklch(0.45 0.12 180) 30%, oklch(0.3 0.08 150) 50%, oklch(0.2 0.06 120) 70%, oklch(0.12 0.04 90) 100%)",
-          }}
-        />
-
         {/* Vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.7)_100%)]" />
-      </div>
-
-      {/* Astronaut + Space shuttle layer */}
-      <div
-        aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
-      >
-        {/* Space shuttle — drifts diagonally, fades as we descend */}
-        <div
-          className="absolute transition-transform duration-200 ease-out"
-          style={{
-            left: `${-15 + progress * 120}%`,
-            top: `${18 + progress * 22}%`,
-            transform: `rotate(${8 + progress * 20}deg)`,
-            opacity: Math.max(0, 1 - progress * 1.2),
-          }}
-        >
-          <img
-            src={shuttleImg}
-            alt=""
-            width={520}
-            height={260}
-            loading="lazy"
-            className="w-[260px] sm:w-[420px] lg:w-[520px] h-auto"
-            style={{
-              filter:
-                "drop-shadow(0 0 20px rgba(120,170,255,0.45)) drop-shadow(0 0 50px rgba(80,130,220,0.25))",
-            }}
-          />
-        </div>
-
       </div>
 
       {/* Altitude HUD — visible on mobile too (compact) */}

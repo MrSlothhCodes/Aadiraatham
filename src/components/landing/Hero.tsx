@@ -11,8 +11,8 @@ export function Hero() {
     >
       <div className="absolute inset-0 -z-10 bg-grid opacity-[0.15] [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
 
-      <div className="mx-auto flex max-w-7xl flex-col items-center px-4 py-12 text-center sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        <div className="mb-4 flex items-center justify-center">
+      <div className="mx-auto flex max-w-7xl flex-col items-center px-4 py-6 text-center sm:px-6 sm:py-10 lg:px-8 lg:py-12">
+        <div className="mb-3 flex items-center justify-center">
           <div className="rounded-2xl border border-primary/15 bg-background/20 px-5 py-3 backdrop-blur-sm">
             <img
               src={iistLogo}
@@ -78,8 +78,9 @@ export function Hero() {
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <Button
             asChild
+            variant="outline"
             size="lg"
-            className="group relative h-12 overflow-hidden bg-primary px-8 text-base font-semibold text-primary-foreground shadow-[0_0_30px_-4px_var(--primary)] transition-all hover:bg-primary/90 hover:shadow-[0_0_50px_-2px_var(--primary)]"
+            className="group h-12 border-primary/40 bg-background/50 px-8 text-base backdrop-blur transition-all hover:border-primary hover:bg-primary/10 hover:text-primary"
           >
             <a href={APPLY_URL} target="_blank" rel="noopener noreferrer">
               <Sparkles className="size-4" />

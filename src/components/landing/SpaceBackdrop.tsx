@@ -169,7 +169,7 @@ export function SpaceBackdrop() {
             className="absolute inset-0 -z-10 rounded-full blur-3xl"
             style={{
               background:
-                "radial-gradient(circle, rgba(200,220,255,0.55) 0%, rgba(160,200,255,0.25) 40%, transparent 75%)",
+                "radial-gradient(circle, rgba(255,228,150,0.6) 0%, rgba(240,200,120,0.3) 40%, transparent 75%)",
               transform: "scale(1.6)",
               animation: "moon-pulse 6s ease-in-out infinite",
             }}
@@ -183,7 +183,7 @@ export function SpaceBackdrop() {
             className="size-56 object-contain sm:size-80 lg:size-96"
             style={{
               filter:
-                "drop-shadow(0 0 30px rgba(200,220,255,0.6)) drop-shadow(0 0 80px rgba(140,180,255,0.4))",
+                "sepia(0.55) saturate(1.5) hue-rotate(-12deg) brightness(1.05) drop-shadow(0 0 30px rgba(255,220,140,0.65)) drop-shadow(0 0 80px rgba(240,190,100,0.45))",
             }}
           />
         </div>

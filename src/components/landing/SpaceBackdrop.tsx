@@ -1,5 +1,4 @@
 import * as React from "react";
-import astronautImg from "@/assets/astronaut.png";
 import shuttleImg from "@/assets/shuttle.png";
 import moonImg from "@/assets/moon.png";
 
@@ -231,30 +230,6 @@ export function SpaceBackdrop() {
           />
         </div>
 
-        {/* Astronaut — floats down on the left, gentle rotation */}
-        <div
-          className="absolute"
-          style={{
-            left: `${6 + Math.sin(progress * Math.PI * 2) * 7}%`,
-            top: `${8 + progress * 75}%`,
-            transform: `rotate(${progress * 360 * 0.5}deg)`,
-            opacity: Math.max(0.2, 1 - progress * 0.5),
-            animation: "float-slow 7s ease-in-out infinite",
-          }}
-        >
-          <img
-            src={astronautImg}
-            alt=""
-            width={260}
-            height={260}
-            loading="lazy"
-            className="w-[140px] sm:w-[200px] lg:w-[260px] h-auto"
-            style={{
-              filter:
-                "drop-shadow(0 0 18px rgba(140,190,255,0.5)) drop-shadow(0 0 40px rgba(80,130,220,0.3))",
-            }}
-          />
-        </div>
       </div>
 
       {/* Altitude HUD — visible on mobile too (compact) */}

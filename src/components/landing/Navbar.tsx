@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { APPLY_URL } from "@/lib/event-config";
 import logo from "@/assets/logo.png";
+import logoClub from "@/assets/logo-club.png";
 
 const links = [
   { href: "#events", label: "Events" },
@@ -38,15 +39,24 @@ export function Navbar() {
         {/* Left: Logo + wordmark */}
         <a
           href="#top"
-          className="flex min-w-0 items-center gap-3 font-display font-bold"
+          className="flex min-w-0 items-center gap-2 font-display font-bold"
         >
-          <img
-            src={logo}
-            alt="Robotics and Drone Club logo"
-            className={`shrink-0 rounded-lg object-cover ring-1 ring-border transition-all duration-300 ease-out ${
-              scrolled ? "size-10" : "size-14 sm:size-16"
-            }`}
-          />
+          <div className="flex shrink-0 items-center gap-2">
+            <img
+              src={logo}
+              alt="Apratim Adirtham logo"
+              className={`shrink-0 rounded-lg object-cover ring-1 ring-border transition-all duration-300 ease-out ${
+                scrolled ? "size-10" : "size-14 sm:size-16"
+              }`}
+            />
+            <img
+              src={logoClub}
+              alt="Robotics and Drone Club logo"
+              className={`shrink-0 rounded-full bg-background object-cover ring-1 ring-border transition-all duration-300 ease-out ${
+                scrolled ? "size-10" : "size-14 sm:size-16"
+              }`}
+            />
+          </div>
           <span
             className={`hidden truncate tracking-tight transition-all duration-300 ease-out sm:inline ${
               scrolled ? "text-base" : "text-xl"

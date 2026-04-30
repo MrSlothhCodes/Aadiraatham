@@ -26,15 +26,28 @@ export function SpaceBackdrop() {
     };
   }, []);
 
-  // Pre-generate stars once
+  // Pre-generate stars once — denser starfield
   const stars = React.useMemo(
     () =>
-      Array.from({ length: 120 }).map(() => ({
+      Array.from({ length: 320 }).map(() => ({
         x: Math.random() * 100,
         y: Math.random() * 100,
-        s: Math.random() * 1.6 + 0.3,
+        s: Math.random() * 1.8 + 0.3,
         d: Math.random() * 4 + 2,
         delay: Math.random() * 5,
+        bright: Math.random() > 0.85,
+      })),
+    [],
+  );
+
+  // A few brighter "shooting" stars / large twinkles
+  const bigStars = React.useMemo(
+    () =>
+      Array.from({ length: 8 }).map(() => ({
+        x: Math.random() * 100,
+        y: Math.random() * 70,
+        d: Math.random() * 3 + 3,
+        delay: Math.random() * 4,
       })),
     [],
   );
@@ -106,23 +119,57 @@ export function SpaceBackdrop() {
                 top: `${st.y}%`,
                 width: `${st.s}px`,
                 height: `${st.s}px`,
-                opacity: 0.6 + Math.random() * 0.4,
+                opacity: st.bright ? 0.95 : 0.55 + Math.random() * 0.4,
                 animation: `twinkle ${st.d}s ease-in-out ${st.delay}s infinite`,
-                boxShadow: "0 0 4px rgba(255,255,255,0.8)",
+                boxShadow: st.bright
+                  ? "0 0 8px rgba(255,255,255,1), 0 0 16px rgba(180,210,255,0.7)"
+                  : "0 0 4px rgba(255,255,255,0.8)",
+              }}
+            />
+          ))}
+          {bigStars.map((st, i) => (
+            <span
+              key={`big-${i}`}
+              className="absolute"
+              style={{
+                left: `${st.x}%`,
+                top: `${st.y}%`,
+                width: 3,
+                height: 3,
+                borderRadius: "9999px",
+                background: "white",
+                boxShadow:
+                  "0 0 10px #fff, 0 0 20px #bcd5ff, 0 0 40px rgba(140,180,255,0.6)",
+                animation: `twinkle ${st.d}s ease-in-out ${st.delay}s infinite`,
               }}
             />
           ))}
         </div>
 
-        {/* Distant planet (visible while in space) */}
+        {/* The Moon — visible while in space, with cratered texture */}
         <div
-          className="absolute -right-20 top-[8%] size-72 rounded-full transition-opacity duration-500 sm:size-96"
+          className="absolute -right-16 top-[8%] size-72 rounded-full transition-opacity duration-500 sm:size-96"
           style={{
-            opacity: starOpacity * 0.9,
-            background:
-              "radial-gradient(circle at 30% 30%, oklch(0.7 0.16 60), oklch(0.4 0.14 40) 55%, oklch(0.18 0.06 30) 90%)",
+            opacity: starOpacity * 0.95,
+            background: [
+              // Maria (dark patches)
+              "radial-gradient(circle at 35% 40%, rgba(70,80,100,0.55) 0 6%, transparent 7%)",
+              "radial-gradient(circle at 55% 30%, rgba(60,70,90,0.5) 0 5%, transparent 6%)",
+              "radial-gradient(circle at 60% 60%, rgba(70,80,100,0.6) 0 9%, transparent 10%)",
+              "radial-gradient(circle at 40% 70%, rgba(60,70,90,0.5) 0 7%, transparent 8%)",
+              // Small craters
+              "radial-gradient(circle at 25% 25%, rgba(40,45,55,0.7) 0 1.4%, transparent 1.6%)",
+              "radial-gradient(circle at 70% 22%, rgba(40,45,55,0.7) 0 1.2%, transparent 1.4%)",
+              "radial-gradient(circle at 30% 55%, rgba(40,45,55,0.7) 0 1.6%, transparent 1.8%)",
+              "radial-gradient(circle at 65% 75%, rgba(40,45,55,0.7) 0 1.4%, transparent 1.6%)",
+              "radial-gradient(circle at 80% 50%, rgba(40,45,55,0.7) 0 1.2%, transparent 1.4%)",
+              "radial-gradient(circle at 50% 85%, rgba(40,45,55,0.7) 0 1.4%, transparent 1.6%)",
+              "radial-gradient(circle at 18% 75%, rgba(40,45,55,0.6) 0 1%, transparent 1.2%)",
+              // Base sphere shading
+              "radial-gradient(circle at 30% 30%, #f4f1ea 0%, #d6d2c8 40%, #8c8a85 75%, #2a2a2e 100%)",
+            ].join(", "),
             boxShadow:
-              "inset -30px -30px 80px oklch(0 0 0 / 0.7), 0 0 80px oklch(0.6 0.18 50 / 0.35)",
+              "inset -28px -28px 70px rgba(0,0,0,0.8), 0 0 60px rgba(200,215,255,0.25), 0 0 120px rgba(160,190,240,0.15)",
           }}
         />
 
@@ -138,6 +185,39 @@ export function SpaceBackdrop() {
 
         {/* Subtle vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(0,0,0,0.55)_100%)]" />
+      </div>
+
+      {/* Astronaut + Space shuttle — drift across as user scrolls */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+      >
+        {/* Space shuttle — moves left to right, descends with scroll */}
+        <div
+          className="absolute transition-transform duration-200 ease-out"
+          style={{
+            left: `${-10 + progress * 110}%`,
+            top: `${15 + progress * 25}%`,
+            transform: `rotate(${10 + progress * 25}deg)`,
+            opacity: Math.max(0, 1 - progress * 1.1),
+          }}
+        >
+          <Shuttle />
+        </div>
+
+        {/* Astronaut — floats down on the left, slowly rotates */}
+        <div
+          className="absolute"
+          style={{
+            left: `${8 + Math.sin(progress * Math.PI * 2) * 6}%`,
+            top: `${10 + progress * 75}%`,
+            transform: `rotate(${progress * 360 * 0.6}deg)`,
+            opacity: Math.max(0.15, 1 - progress * 0.6),
+            animation: "float-slow 6s ease-in-out infinite",
+          }}
+        >
+          <Astronaut />
+        </div>
       </div>
 
       {/* Altitude HUD — fixed right-side gauge */}

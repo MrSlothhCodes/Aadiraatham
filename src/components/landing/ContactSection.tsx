@@ -29,7 +29,7 @@ export function ContactSection() {
             <a
               key={c.phone}
               href={`tel:${c.phone}`}
-              className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-elegant"
+              className="group flex items-center gap-4 rounded-2xl border border-primary/20 bg-card/40 p-6 backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-glow"
             >
               <span className="grid size-12 place-items-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                 <Phone className="size-5" />
@@ -50,7 +50,7 @@ export function ContactSection() {
 
           <a
             href={`mailto:${CONTACT.email}`}
-            className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-elegant"
+            className="group flex items-center gap-4 rounded-2xl border border-primary/20 bg-card/40 p-6 backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-glow"
           >
             <span className="grid size-12 place-items-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
               <Mail className="size-5" />
@@ -65,7 +65,7 @@ export function ContactSection() {
             </div>
           </a>
 
-          <div className="flex items-center gap-4 rounded-2xl border border-border bg-card p-6">
+          <div className="flex items-center gap-4 rounded-2xl border border-primary/20 bg-card/40 p-6 backdrop-blur-xl">
             <span className="grid size-12 place-items-center rounded-xl bg-primary/10 text-primary">
               <MapPin className="size-5" />
             </span>
@@ -86,7 +86,7 @@ export function ContactSection() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            className="grid size-11 place-items-center rounded-xl border border-border bg-card text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary"
+            className="grid size-11 place-items-center rounded-xl border border-primary/20 bg-card/40 text-muted-foreground backdrop-blur transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:text-primary"
           >
             <Instagram className="size-5" />
           </a>
@@ -95,7 +95,7 @@ export function ContactSection() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="grid size-11 place-items-center rounded-xl border border-border bg-card text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary"
+            className="grid size-11 place-items-center rounded-xl border border-primary/20 bg-card/40 text-muted-foreground backdrop-blur transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:text-primary"
           >
             <Linkedin className="size-5" />
           </a>

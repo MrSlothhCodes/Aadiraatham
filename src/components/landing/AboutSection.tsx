@@ -44,7 +44,7 @@ export function AboutSection() {
               return (
                 <div
                   key={s.label}
-                  className="flex items-center gap-6 rounded-2xl border border-border bg-card p-6 transition-shadow hover:shadow-elegant"
+                  className="flex items-center gap-6 rounded-2xl border border-primary/20 bg-card/40 p-6 backdrop-blur-xl transition-all hover:border-primary/50 hover:shadow-glow"
                 >
                   <span className="grid size-14 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
                     <Icon className="size-7" />

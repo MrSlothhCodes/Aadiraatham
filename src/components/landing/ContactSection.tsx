@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { APPLY_URL, CONTACT } from "@/lib/event-config";
 
 const coordinators = [
-  { name: "Harshvardhan Jaiswal", role: "Student Coordinator", phone: "9303538391" },
+  { name: "Harshvardhan Jaiswal", role: "Student Coordinator", phone: "6265776946" },
   { name: "Sumit Maheshwari", role: "Student Coordinator", phone: "7909766208" },
 ];
 

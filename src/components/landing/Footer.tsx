@@ -1,6 +1,6 @@
 import { Instagram, Linkedin, Mail } from "lucide-react";
 import { CONTACT, EVENT } from "@/lib/event-config";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo.png";
 
 export function Footer() {
   return (

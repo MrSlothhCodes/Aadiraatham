@@ -1,7 +1,6 @@
 import { Trophy, Users, Lightbulb } from "lucide-react";
 
 const stats = [
-  { icon: Users, label: "Expected participants", value: "500+" },
   { icon: Trophy, label: "Total prize pool", value: "₹50K+" },
   { icon: Lightbulb, label: "Days of innovation", value: "2" },
 ];

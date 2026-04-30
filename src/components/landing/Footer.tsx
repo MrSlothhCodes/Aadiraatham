@@ -1,6 +1,6 @@
 import { Instagram, Linkedin, Mail } from "lucide-react";
 import { CONTACT, EVENT } from "@/lib/event-config";
-import logo from "@/assets/logo.png";
+import logoClub from "@/assets/logo-club.png";
 
 export function Footer() {
   return (
@@ -8,9 +8,9 @@ export function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
           <img
-            src={logo}
+            src={logoClub}
             alt={`${EVENT.organiser} logo`}
-            className="size-8 rounded-lg object-cover ring-1 ring-border"
+            className="size-8 rounded-full bg-background object-cover ring-1 ring-border"
           />
           <span className="font-display text-sm font-semibold">
             {EVENT.name}

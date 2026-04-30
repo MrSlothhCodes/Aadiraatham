@@ -1,6 +1,7 @@
 import { Calendar, MapPin, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { APPLY_URL, EVENT } from "@/lib/event-config";
+import iistLogo from "@/assets/logo-iist.png";
 
 export function Hero() {
   return (
@@ -11,6 +12,16 @@ export function Hero() {
       <div className="absolute inset-0 -z-10 bg-grid opacity-[0.15] [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
 
       <div className="mx-auto flex max-w-7xl flex-col items-center px-4 py-24 text-center sm:px-6 sm:py-32 lg:px-8 lg:py-40">
+        <div className="mb-6 flex items-center justify-center">
+          <div className="rounded-2xl border border-primary/20 bg-background/40 px-5 py-3 backdrop-blur-md shadow-elegant">
+            <img
+              src={iistLogo}
+              alt="IIST · ECE Department"
+              className="h-12 w-auto sm:h-16 object-contain mix-blend-screen opacity-95 [filter:drop-shadow(0_0_12px_rgba(120,180,255,0.35))_brightness(1.05)]"
+            />
+          </div>
+        </div>
+
         <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-primary">
           <span className="size-1.5 animate-pulse rounded-full bg-primary" />
           {EVENT.organiser} presents

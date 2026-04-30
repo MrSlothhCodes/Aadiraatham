@@ -1,3 +1,4 @@
+import * as React from "react";
 import {
   Brain,
   CircuitBoard,
@@ -5,8 +6,22 @@ import {
   Car,
   Swords,
   PackageSearch,
+  MapPin,
+  Tag,
+  CalendarDays,
+  ArrowRight,
   type LucideIcon,
 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { APPLY_URL } from "@/lib/event-config";
 
 interface EventItem {
   icon: LucideIcon;
@@ -75,6 +90,9 @@ const events: EventItem[] = [
 ];
 
 export function EventsSection() {
+  const [active, setActive] = React.useState<EventItem | null>(null);
+  const ActiveIcon = active?.icon;
+
   return (
     <section id="events" className="border-b border-border/60 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -96,15 +114,28 @@ export function EventsSection() {
             const Icon = e.icon;
             const num = String(i + 1).padStart(2, "0");
             return (
-              <article
+              <button
+                type="button"
+                onClick={() => setActive(e)}
                 key={e.name}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-500 hover:-translate-y-2 hover:border-primary/60 hover:shadow-elegant"
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 text-left transition-all duration-500 hover:-translate-y-2 hover:border-primary/60 hover:shadow-elegant focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 {/* Animated gradient border glow */}
                 <div className="pointer-events-none absolute -inset-px -z-10 rounded-2xl bg-gradient-to-br from-primary/0 via-primary/0 to-primary-glow/0 opacity-0 blur-xl transition-opacity duration-500 group-hover:from-primary/30 group-hover:to-primary-glow/30 group-hover:opacity-100" />
 
                 {/* Top accent bar */}
                 <div className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-primary via-primary-glow to-primary transition-transform duration-500 group-hover:scale-x-100" />
+
+                {/* Subtle grid pattern */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 opacity-[0.04] transition-opacity duration-500 group-hover:opacity-[0.08]"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
+                    backgroundSize: "24px 24px",
+                  }}
+                />
 
                 {/* Big faded number */}
                 <span className="pointer-events-none absolute -right-2 -top-4 select-none font-display text-[7rem] font-black leading-none text-primary/5 transition-colors duration-500 group-hover:text-primary/10">
@@ -123,19 +154,75 @@ export function EventsSection() {
                 <h3 className="relative mt-6 font-display text-xl font-bold text-card-foreground transition-colors group-hover:text-primary">
                   {e.name}
                 </h3>
-                <p className="relative mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                <p className="relative mt-2 flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-3">
                   {e.description}
                 </p>
 
                 <div className="relative mt-6 flex items-center justify-between border-t border-dashed border-border/60 pt-4 text-xs">
                   <span className="font-semibold text-primary">{e.meta}</span>
-                  <span className="text-muted-foreground">{e.venue}</span>
+                  <span className="inline-flex items-center gap-1 text-muted-foreground">
+                    View details
+                    <ArrowRight className="size-3 transition-transform group-hover:translate-x-1" />
+                  </span>
                 </div>
-              </article>
+              </button>
             );
           })}
         </div>
       </div>
+
+      <Dialog open={!!active} onOpenChange={(o) => !o && setActive(null)}>
+        <DialogContent className="sm:max-w-lg">
+          {active ? (
+            <>
+              <DialogHeader>
+                <div className="flex items-center gap-3">
+                  {ActiveIcon ? (
+                    <span className="grid size-12 place-items-center rounded-xl bg-primary/10 text-primary">
+                      <ActiveIcon className="size-6" />
+                    </span>
+                  ) : null}
+                  <div className="flex flex-col items-start gap-1">
+                    <span className="rounded-full border border-primary/30 bg-primary/5 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.15em] text-primary">
+                      {active.day}
+                    </span>
+                    <DialogTitle className="font-display text-2xl">
+                      {active.name}
+                    </DialogTitle>
+                  </div>
+                </div>
+                <DialogDescription className="pt-3 text-base leading-relaxed">
+                  {active.description}
+                </DialogDescription>
+              </DialogHeader>
+
+              <div className="grid gap-3 rounded-lg border border-border bg-muted/30 p-4 text-sm">
+                <div className="flex items-center gap-2">
+                  <Tag className="size-4 text-primary" />
+                  <span className="font-medium">{active.meta}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="size-4 text-primary" />
+                  <span className="text-muted-foreground">{active.venue}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CalendarDays className="size-4 text-primary" />
+                  <span className="text-muted-foreground">{active.day} · May 14–15, 2026</span>
+                </div>
+              </div>
+
+              <DialogFooter>
+                <Button asChild className="w-full sm:w-auto">
+                  <a href={APPLY_URL} target="_blank" rel="noopener noreferrer">
+                    Apply Now
+                    <ArrowRight className="size-4" />
+                  </a>
+                </Button>
+              </DialogFooter>
+            </>
+          ) : null}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
